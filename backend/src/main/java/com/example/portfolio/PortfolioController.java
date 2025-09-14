@@ -1,8 +1,12 @@
 package com.example.portfolio;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.*;
+import java.nio.file.*;
+import java.io.IOException;
 import java.util.List;
 import java.util.Arrays;
 
@@ -50,42 +54,76 @@ public class PortfolioController {
                 new SkillCategory("AI Tools", Arrays.asList("GitHub Copilot", "Windsurf AI", "DistilBERT")));
     }
 
-}
+    // ✅ NOW INSIDE THE CLASS!
+    @PostMapping("/api/upload-resume")
+    public ResponseEntity<String> uploadResume(@RequestParam("file") MultipartFile file) {
+        try {
+            String fileName = "resume_" + System.currentTimeMillis() + ".pdf";
+            Path uploadPath = Paths.get("uploads/");
 
-class AboutData {
-    public String name;
-    public String title;
-    public String bio;
+            if (!Files.exists(uploadPath)) {
+                Files.createDirectories(uploadPath);
+            }
 
-    public AboutData(String name, String title, String bio) {
-        this.name = name;
-        this.title = title;
-        this.bio = bio;
+            Files.copy(file.getInputStream(), uploadPath.resolve(fileName),
+                    StandardCopyOption.REPLACE_EXISTING);
+
+            return ResponseEntity.ok("Resume uploaded successfully: " + fileName);
+        } catch (IOException e) {
+            return ResponseEntity.status(500).body("Upload failed: " + e.getMessage());
+        }
     }
-}
 
-class Project {
-    public String name;
-    public String description;
-    public String techStack;
-    public String githubUrl;
-    public String liveUrl;
+    @GetMapping("/api/download-resume")
+    public ResponseEntity<Resource> downloadResume() {
+        try {
+            Path resumePath = Paths.get("uploads/AvantikaYadav_Resume.pdf");
+            Resource resource = new UrlResource(resumePath.toUri());
 
-    public Project(String name, String description, String techStack, String githubUrl, String liveUrl) {
-        this.name = name;
-        this.description = description;
-        this.techStack = techStack;
-        this.githubUrl = githubUrl;
-        this.liveUrl = liveUrl;
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=AvantikaYadav_Resume.pdf")
+                    .body(resource);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
-}
 
-class SkillCategory {
-    public String category;
-    public List<String> skills;
-    
-    public SkillCategory(String category, List<String> skills) {
-        this.category = category;
-        this.skills = skills;
+    // Classes at the bottom
+    class AboutData {
+        public String name;
+        public String title;
+        public String bio;
+
+        public AboutData(String name, String title, String bio) {
+            this.name = name;
+            this.title = title;
+            this.bio = bio;
+        }
+    }
+
+    class Project {
+        public String name;
+        public String description;
+        public String techStack;
+        public String githubUrl;
+        public String liveUrl;
+
+        public Project(String name, String description, String techStack, String githubUrl, String liveUrl) {
+            this.name = name;
+            this.description = description;
+            this.techStack = techStack;
+            this.githubUrl = githubUrl;
+            this.liveUrl = liveUrl;
+        }
+    }
+
+    class SkillCategory {
+        public String category;
+        public List<String> skills;
+        
+        public SkillCategory(String category, List<String> skills) {
+            this.category = category;
+            this.skills = skills;
+        }
     }
 }
