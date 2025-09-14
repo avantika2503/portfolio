@@ -19,29 +19,37 @@ public class PortfolioController {
     @GetMapping("/api/projects")
     public List<Project> getProjects() {
         return Arrays.asList(
-            new Project(
-                "Portfolio Website", 
-                "Full-stack portfolio showcasing React frontend with Spring Boot REST API backend",
-                "React, Java, Spring Boot, CSS3, REST API",
-                "https://github.com/avantika2503/portfolio",
-                "http://localhost:5173"
-            ),
-            new Project(
-                "Product Inventory Management System", 
-                "Java-based enterprise application with GUI for comprehensive inventory management and supplier tracking",
-                "Java, MySQL, Swing/JavaFX, CRUD Operations",
-                "https://github.com/avantika2503/inventory-management",
-                "#"
-            ),
-            new Project(
-                "Sentiment Analysis Model", 
-                "Research-oriented machine learning model for movie reviews using DistilBERT, achieving 94.15% accuracy",
-                "Python, DistilBERT, NLP, Machine Learning",
-                "https://github.com/avantika2503/project",
-                "#"
-            )
-        );
+                new Project(
+                        "Portfolio Website",
+                        "Full-stack portfolio showcasing React frontend with Spring Boot REST API backend",
+                        "React, Java, Spring Boot, CSS3, REST API",
+                        "https://github.com/avantika2503/portfolio",
+                        "http://localhost:5173"),
+                new Project(
+                        "Product Inventory Management System",
+                        "Java-based enterprise application with GUI for comprehensive inventory management and supplier tracking",
+                        "Java, MySQL, Swing/JavaFX, CRUD Operations",
+                        "https://github.com/avantika2503/inventory-management",
+                        "#"),
+                new Project(
+                        "Sentiment Analysis Model",
+                        "Research-oriented machine learning model for movie reviews using DistilBERT, achieving 94.15% accuracy",
+                        "Python, DistilBERT, NLP, Machine Learning",
+                        "https://github.com/avantika2503/project",
+                        "#"));
     }
+
+    @GetMapping("/api/skills")
+    public List<SkillCategory> getSkills() {
+        return Arrays.asList(
+                new SkillCategory("Languages", Arrays.asList("Java", "JavaScript", "Python", "HTML", "CSS")),
+                new SkillCategory("Frameworks",
+                        Arrays.asList("Spring Boot", "React.js", "Django", "Node.js", "Express.js")),
+                new SkillCategory("Databases", Arrays.asList("MySQL", "MongoDB")),
+                new SkillCategory("Tools", Arrays.asList("Git/GitHub", "Postman", "VSCode", "SonarQube", "ESLint")),
+                new SkillCategory("AI Tools", Arrays.asList("GitHub Copilot", "Windsurf AI", "DistilBERT")));
+    }
+
 }
 
 class AboutData {
@@ -69,5 +77,15 @@ class Project {
         this.techStack = techStack;
         this.githubUrl = githubUrl;
         this.liveUrl = liveUrl;
+    }
+}
+
+class SkillCategory {
+    public String category;
+    public List<String> skills;
+    
+    public SkillCategory(String category, List<String> skills) {
+        this.category = category;
+        this.skills = skills;
     }
 }

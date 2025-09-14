@@ -11,18 +11,19 @@ body {
 
 .portfolio-container {
   display: flex;
-  width: 400vw; /* 4 sections = 400% width */
+  width: 500vw; /* ✅ 5 sections = 500% width */
   height: 100vh;
   transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .section {
-  width: 100vw; /* Each section takes full viewport width */
+  width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  overflow-y: auto;
 }
 
 .hero {
@@ -35,86 +36,106 @@ body {
   color: white;
 }
 
-.projects {
+.skills {
   background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
   color: white;
 }
 
-.contact {
+.projects {
   background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  color: white;
+}
+
+.contact {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
   color: white;
 }
 
 .content {
   text-align: center;
-  max-width: 800px;
+  max-width: 1100px;
   padding: 2rem;
+  width: 100%;
 }
 
 .content h1 {
-  font-size: 4rem;
+  font-size: 3.5rem;
   margin-bottom: 1rem;
   opacity: 0;
   animation: fadeInUp 1s ease-out 0.2s forwards;
 }
 
 .content h2 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   margin-bottom: 2rem;
   opacity: 0;
   animation: fadeInUp 1s ease-out 0.4s forwards;
 }
 
 .content p {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   line-height: 1.6;
   opacity: 0;
   animation: fadeInUp 1s ease-out 0.6s forwards;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* About Section Details */
+.about-details {
+  text-align: left;
+  margin-top: 2rem;
 }
 
-/* Navigation dots */
-.nav-dots {
-  position: fixed;
-  right: 2rem;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 100;
+.about-details p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
 }
 
-.dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
-  margin: 1rem 0;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.dot.active {
-  background: white;
-  transform: scale(1.5);
-}
-
-/* Fix Project Cards Layout */
-.project-grid {
+/* Skills Section */
+.skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
   margin-top: 2rem;
-  max-width: 1200px;
-  width: 100%;
+}
+
+.skill-category {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.skill-category h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.skill-tag {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Project Cards */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
 }
 
 .project-card {
@@ -129,6 +150,12 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .project-card h3 {
@@ -177,6 +204,41 @@ body {
   transform: scale(1.05);
 }
 
+/* Contact Grid */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.contact-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: white;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.contact-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.contact-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.contact-card p {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
 /* Button Styling */
 .cta-btn {
   background: rgba(255, 255, 255, 0.2);
@@ -194,4 +256,39 @@ body {
 .cta-btn:hover {
   background: rgba(255, 255, 255, 0.3);
   transform: scale(1.05);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Navigation dots */
+.nav-dots {
+  position: fixed;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  margin: 1rem 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background: white;
+  transform: scale(1.5);
 }
