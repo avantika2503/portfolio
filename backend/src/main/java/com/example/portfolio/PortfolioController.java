@@ -2,6 +2,7 @@ package com.example.portfolio;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.*;
@@ -9,6 +10,7 @@ import java.nio.file.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.Arrays;
+
 
 @RestController
 @CrossOrigin(origins = "http://localhost:5173")
@@ -75,18 +77,24 @@ public class PortfolioController {
     }
 
     @GetMapping("/api/download-resume")
-    public ResponseEntity<Resource> downloadResume() {
-        try {
-            Path resumePath = Paths.get("uploads/AvantikaYadav_Resume.pdf");
-            Resource resource = new UrlResource(resumePath.toUri());
-
-            return ResponseEntity.ok()
-                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=AvantikaYadav_Resume.pdf")
-                    .body(resource);
-        } catch (Exception e) {
+public ResponseEntity<Resource> downloadResume() {
+    try {
+        // Use ClassPathResource instead of file path
+        Resource resource = new ClassPathResource("static/AvantikaYadav_Resume.pdf");
+        
+        if (!resource.exists()) {
             return ResponseEntity.notFound().build();
         }
+        
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=AvantikaYadav_Resume.pdf")
+                .header(HttpHeaders.CONTENT_TYPE, "application/pdf")
+                .body(resource);
+    } catch (Exception e) {
+        return ResponseEntity.notFound().build();
     }
+}
+
 
     // Classes at the bottom
     class AboutData {

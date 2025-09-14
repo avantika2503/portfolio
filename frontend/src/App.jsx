@@ -296,10 +296,22 @@ function App() {
       <section id="contact" className="contact-section">
         <div className="container">
           <h2>Let's Connect</h2>
-          <p>
-            Open to Software Development opportunities and research
-            collaborations!
-          </p>
+          <p>Open to Software Development opportunities!</p>
+
+          {/* ✅ ADD RESUME DOWNLOAD BUTTON */}
+          <div className="resume-download">
+            <button
+              onClick={() =>
+                window.open(
+                  "http://localhost:8080/api/download-resume",
+                  "_blank"
+                )
+              }
+              className="download-btn"
+            >
+              📄 Download Resume
+            </button>
+          </div>
           <div className="contact-grid">
             <a href="mailto:avantiika.yadav@gmail.com" className="contact-card">
               <h3>📧 Email</h3>
