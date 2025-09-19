@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
 import "./App.css";
+import MainHome from "./MainHome"; 
+import About from "./About";
+import Skills from "./Skills";
+import Projects from "./Projects";
+import Contact from "./Contact";
 
 function App() {
   const [aboutData, setAboutData] = useState(null);
@@ -182,155 +187,25 @@ function App() {
       </div>
     );
   }
-
-  return (
+     return (
     <div className="portfolio">
-      {/* Hero Section */}
-      <section id="hero" className="hero-section">
-        <div className="hero-content">
-          <h1>{aboutData?.name || "Loading..."}</h1>
-          <h2>{aboutData?.title || "Loading..."}</h2>
-          <p>{aboutData?.bio || "Loading..."}</p>
-          <button onClick={() => scrollToSection("about")} className="cta-btn">
-            Explore My Journey ↓
-          </button>
-        </div>
-      </section>
+      {/* Main Home*/}
+      <MainHome aboutData={aboutData} 
+      scrollToSection={scrollToSection} />
 
       {/* Quick About */}
-      <section id="about" className="about-section">
-        <div className="container">
-          <h2>About Me</h2>
-          <p>
-            Computer Science Student | IEEE Published Researcher | Full Stack
-            Developer
-          </p>
-
-          <div className="quick-stats">
-            <div
-              className="stat-card"
-              onClick={() => setCurrentView("education")}
-            >
-              <h3>🎓 Education</h3>
-              <p>BTech CS - 8.41 GPA</p>
-              <span className="view-more">View Details →</span>
-            </div>
-
-            <div
-              className="stat-card"
-              onClick={() => setCurrentView("experience")}
-            >
-              <h3>💼 Experience</h3>
-              <p>3 Internships</p>
-              <span className="view-more">View Details →</span>
-            </div>
-
-            <div
-              className="stat-card"
-              onClick={() => setCurrentView("research")}
-            >
-              <h3>📊 Research</h3>
-              <p>2 IEEE Publications</p>
-              <span className="view-more">View Details →</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      <About aboutData={aboutData} 
+      scrollToSection={scrollToSection} 
+      setCurrentView={setCurrentView}/>
 
       {/* Skills Section */}
-      <section id="skills" className="skills-section">
-        <div className="container">
-          <h2>Technical Skills</h2>
-          <div className="skills-grid">
-            {skillsData.map((category, index) => (
-              <div key={index} className="skill-category">
-                <h3>{category.category}</h3>
-                <div className="skill-tags">
-                  {category.skills.map((skill, skillIndex) => (
-                    <span key={skillIndex} className="skill-tag">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <Skills skillsData={skillsData}/>
 
       {/* Projects Section */}
-      <section id="projects" className="projects-section">
-        <div className="container">
-          <h2>Featured Projects</h2>
-          <div className="projects-grid">
-            {projectsData.map((project, index) => (
-              <div key={index} className="project-card">
-                <h3>{project.name}</h3>
-                <p>{project.description}</p>
-                <div className="tech-stack">{project.techStack}</div>
-                <div className="project-links">
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    GitHub
-                  </a>
-                  {project.liveUrl !== "#" && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Live Demo
-                    </a>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <Projects projectsData={projectsData} />
 
       {/* Contact Section */}
-      <section id="contact" className="contact-section">
-        <div className="container">
-          <h2>Let's Connect</h2>
-          <p>Open to Software Development opportunities!</p>
-
-          {/* ✅ ADD RESUME DOWNLOAD BUTTON */}
-          <div className="resume-download">
-            <button
-              onClick={() =>
-                window.open(
-                  "http://localhost:8080/api/download-resume",
-                  "_blank"
-                )
-              }
-              className="download-btn"
-            >
-              📄 Download Resume
-            </button>
-          </div>
-          <div className="contact-grid">
-            <a href="mailto:avantiika.yadav@gmail.com" className="contact-card">
-              <h3>📧 Email</h3>
-              <p>avantiika.yadav@gmail.com</p>
-            </a>
-            <a
-              href="https://linkedin.com/in/avantika-yadav-030834232"
-              className="contact-card"
-            >
-              <h3>💼 LinkedIn</h3>
-              <p>Connect with me</p>
-            </a>
-            <a href="https://github.com/avantika2503" className="contact-card">
-              <h3>🚀 GitHub</h3>
-              <p>View my code</p>
-            </a>
-          </div>
-        </div>
-      </section>
+      <Contact />
     </div>
   );
 }
