@@ -1,17 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./App.css";
 import MainHome from "./components/MainHome"; 
 import About from "./components/About";
-import Skills from "./sections/Skills";
-import Projects from "./sections/Projects";
+import PortfolioGrid from "./components/PortfolioGrid";
 import Contact from "./components/Contact";
 import DetailView from "./DetailView";
 import portfolioData from "./data/portfolio.json";
 
 function App() {
-  const [aboutData, setAboutData] = useState(portfolioData.about);
-  const [projectsData, setProjectsData] = useState(portfolioData.projects);
-  const [skillsData, setSkillsData] = useState(portfolioData.skills);
   const [currentView, setCurrentView] = useState("home");
 
   const scrollToSection = (sectionId) => {
@@ -24,11 +20,36 @@ function App() {
 
   return (
     <div className="portfolio">
-      <MainHome aboutData={aboutData} scrollToSection={scrollToSection} />
-      <About aboutData={aboutData} scrollToSection={scrollToSection} setCurrentView={setCurrentView}/>
-      <Skills skillsData={skillsData}/>
-      <Projects projectsData={projectsData} />
-      <Contact />
+      {/* Section 1: Hero */}
+      <section id="home">
+        <MainHome 
+          aboutData={portfolioData.about} 
+          scrollToSection={scrollToSection} 
+        />
+      </section>
+
+      {/* Section 2: About */}
+      <section id="about">
+        <About 
+          aboutData={portfolioData.about} 
+          scrollToSection={scrollToSection} 
+          setCurrentView={setCurrentView}
+        />
+      </section>
+
+      {/* Section 3: Portfolio Grid */}
+      <section id="portfolio">
+        <PortfolioGrid 
+          projectsData={portfolioData.projects}
+          skillsData={portfolioData.skills}
+          setCurrentView={setCurrentView}
+        />
+      </section>
+
+      {/* Section 4: Contact */}
+      <section id="contact">
+        <Contact />
+      </section>
     </div>
   );
 }

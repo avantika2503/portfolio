@@ -577,3 +577,126 @@ body {
 
 
 
+/* Portfolio Grid */
+.portfolio-grid {
+  padding: 80px 40px;
+  background: #f8f9fa;
+}
+
+.portfolio-grid h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  color: #333;
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 200px);
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.bento-card {
+  position: relative;
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bento-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.bento-card:hover .card-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-large {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.card-medium {
+  grid-column: span 2;
+  grid-row: span 1;
+}
+
+.card-small {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+.card-content {
+  z-index: 2;
+  position: relative;
+}
+
+.card-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.bento-card h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.bento-card p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.1));
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+
+.view-more-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.view-more-btn:hover {
+  background: #0056b3;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+  }
+  
+  .card-large, .card-medium, .card-small {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
+
