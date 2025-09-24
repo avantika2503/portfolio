@@ -1,0 +1,37 @@
+{
+  "about": {
+    "name": "Avantika",
+    "title": "Full Stack Java Developer", 
+    "bio": "Passionate about creating amazing web experiences"
+  },
+  "projects": [
+    {
+      "name": "Portfolio Website",
+      "description": "Full-stack portfolio showcasing React frontend with Spring Boot REST API backend",
+      "techStack": "React, Java, Spring Boot, CSS3, REST API",
+      "githubUrl": "https://github.com/avantika2503/portfolio",
+      "liveUrl": "http://localhost:5173"
+    },
+    {
+      "name": "Product Inventory Management System", 
+      "description": "Java-based enterprise application with GUI for comprehensive inventory management and supplier tracking",
+      "techStack": "Java, MySQL, Swing/JavaFX, CRUD Operations",
+      "githubUrl": "https://github.com/avantika2503/inventory-management",
+      "liveUrl": "#"
+    },
+    {
+      "name": "Sentiment Analysis Model",
+      "description": "Research-oriented machine learning model for movie reviews using DistilBERT, achieving 94.15% accuracy", 
+      "techStack": "Python, DistilBERT, NLP, Machine Learning",
+      "githubUrl": "https://github.com/avantika2503/project",
+      "liveUrl": "#"
+    }
+  ],
+  "skills": [
+    {"category": "Languages", "skills": ["Java", "JavaScript", "Python", "HTML", "CSS"]},
+    {"category": "Frameworks", "skills": ["Spring Boot", "React.js", "Django", "Node.js", "Express.js"]},
+    {"category": "Databases", "skills": ["MySQL", "MongoDB"]},
+    {"category": "Tools", "skills": ["Git/GitHub", "Postman", "VSCode", "SonarQube", "ESLint"]},
+    {"category": "AI Tools", "skills": ["GitHub Copilot", "Windsurf AI", "DistilBERT"]}
+  ]
+}

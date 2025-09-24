@@ -1,35 +1,18 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import MainHome from "./MainHome"; 
-import About from "./About";
-import Skills from "./Skills";
-import Projects from "./Projects";
-import Contact from "./Contact";
+import MainHome from "./components/MainHome"; 
+import About from "./components/About";
+import Skills from "./sections/Skills";
+import Projects from "./sections/Projects";
+import Contact from "./components/Contact";
 import DetailView from "./DetailView";
+import portfolioData from "./data/portfolio.json";
 
 function App() {
-  const [aboutData, setAboutData] = useState(null);
-  const [projectsData, setProjectsData] = useState([]);
-  const [skillsData, setSkillsData] = useState([]);
+  const [aboutData, setAboutData] = useState(portfolioData.about);
+  const [projectsData, setProjectsData] = useState(portfolioData.projects);
+  const [skillsData, setSkillsData] = useState(portfolioData.skills);
   const [currentView, setCurrentView] = useState("home");
-
-  // Fetch all data from APIs
-  useEffect(() => {
-    fetch("http://localhost:8080/api/about")
-      .then((response) => response.json())
-      .then((data) => setAboutData(data))
-      .catch((error) => console.error("Error:", error));
-
-    fetch("http://localhost:8080/api/projects")
-      .then((response) => response.json())
-      .then((data) => setProjectsData(data))
-      .catch((error) => console.error("Error:", error));
-
-    fetch("http://localhost:8080/api/skills")
-      .then((response) => response.json())
-      .then((data) => setSkillsData(data))
-      .catch((error) => console.error("Error:", error));
-  }, []);
 
   const scrollToSection = (sectionId) => {
     document.getElementById(sectionId).scrollIntoView({ behavior: "smooth" });
@@ -38,24 +21,13 @@ function App() {
   if (currentView !== "home") {
     return <DetailView currentView={currentView} setCurrentView={setCurrentView} />;
   }
-     return (
+
+  return (
     <div className="portfolio">
-      {/* Main Home*/}
-      <MainHome aboutData={aboutData} 
-      scrollToSection={scrollToSection} />
-
-      {/* Quick About */}
-      <About aboutData={aboutData} 
-      scrollToSection={scrollToSection} 
-      setCurrentView={setCurrentView}/>
-
-      {/* Skills Section */}
+      <MainHome aboutData={aboutData} scrollToSection={scrollToSection} />
+      <About aboutData={aboutData} scrollToSection={scrollToSection} setCurrentView={setCurrentView}/>
       <Skills skillsData={skillsData}/>
-
-      {/* Projects Section */}
       <Projects projectsData={projectsData} />
-
-      {/* Contact Section */}
       <Contact />
     </div>
   );
