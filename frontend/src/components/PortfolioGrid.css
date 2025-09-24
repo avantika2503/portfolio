@@ -46,7 +46,7 @@
 }
 
 .bento-card:hover .card-icon {
-  transform: scale(0.8); /* Make icon 70% of original size on hover */
+  transform: scale(0.9); /* Make icon 70% of original size on hover */
 }
 
 .bento-card:hover h3 {
@@ -135,20 +135,37 @@
   transition: all 0.3s ease;
 }
 
+/* View More Button */
 .view-more-btn {
-  background: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 25px;
+  background: none; /* No background */
+  color: #333; /* Dark text */
+  border: none; /* No border */
+  padding: 0; /* No padding */
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 600; /* Make it slightly bolder */
+  font-size: 0.9rem;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Space between text and arrow */
 }
 
 .view-more-btn:hover {
-  background: #0056b3;
+  color: #007bff; /* Just change color on hover */
+  transform: translateX(5px); /* Slight slide right on hover */
 }
+
+/* Style the arrow separately if needed */
+.view-more-btn::after {
+  content: "→";
+  transition: transform 0.3s ease;
+}
+
+.view-more-btn:hover::after {
+  transform: translateX(3px); /* Arrow moves further right on hover */
+}
+
+
 
 /* Responsive */
 @media (max-width: 768px) {

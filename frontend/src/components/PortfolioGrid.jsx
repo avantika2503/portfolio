@@ -71,7 +71,7 @@ function PortfolioGrid({ projectsData, skillsData, setCurrentView }) {
             </div>
             <div className="card-overlay">
               <button className="view-more-btn">
-                View →
+                View 
               </button>
             </div>
           </div>
