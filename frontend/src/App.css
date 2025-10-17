@@ -33,6 +33,7 @@ body {
 /* Hero Section */
 .hero-section {
   min-height: 100vh;
+  background-color: #f8f9fa;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,7 +83,7 @@ body {
 /* Contact Section */
 .contact-section {
   padding: 5rem 0;
-  background: white;
+  background: #f8f9fa;
 }
 
 .contact-section h2 {
@@ -106,7 +107,7 @@ body {
 }
 
 .contact-card {
-  background: #f8f9fa;
+  background: #f2f3f4;
   border-radius: 15px;
   padding: 2rem;
   text-decoration: none;

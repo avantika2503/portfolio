@@ -22,7 +22,7 @@ function NavBar({ items, onItemClick }) {
         <div style={{
           display: 'flex',
           gap: '4px',
-          backgroundColor: 'rgba(255, 255, 255, 0.95)',
+          backgroundColor: 'rgba(248, 249, 250, 0.95)',
           padding: '6px 12px',
           borderRadius: '9999px',
           backdropFilter: 'blur(16px)',
