@@ -5,13 +5,42 @@ import About from "./components/About";
 import PortfolioGrid from "./components/PortfolioGrid";
 import Contact from "./components/Contact";
 import DetailView from "./DetailView";
+import NavBar from "./components/NavBar"; // ADD THIS
 import portfolioData from "./data/portfolio.json";
+import { Home, User, Mail, Briefcase } from 'lucide-react'; // ADD THIS
 
 function App() {
   const [currentView, setCurrentView] = useState("home");
 
+  // ADD THIS
+  const navItems = [
+    { name: 'Home', icon: Home },
+    { name: 'About', icon: User },
+    { name: 'Portfolio', icon: Briefcase },
+    { name: 'Contact', icon: Mail },
+  ];
+
   const scrollToSection = (sectionId) => {
-    document.getElementById(sectionId).scrollIntoView({ behavior: "smooth" });
+    if (currentView !== "home") {
+      setCurrentView("home");
+      setTimeout(() => {
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    } else {
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  // ADD THIS
+  const handleNavClick = (itemName) => {
+    const sectionMap = {
+      'Home': 'home',
+      'About': 'about', 
+      'Portfolio': 'portfolio',
+      'Contact': 'contact'
+    };
+    const sectionId = sectionMap[itemName];
+    if (sectionId) scrollToSection(sectionId);
   };
 
   if (currentView !== "home") {
@@ -20,7 +49,9 @@ function App() {
 
   return (
     <div className="portfolio">
-      {/* Section 1: Hero */}
+      {/* ADD THIS LINE */}
+      <NavBar items={navItems} onItemClick={handleNavClick} />
+      
       <section id="home">
         <MainHome 
           aboutData={portfolioData.about} 
@@ -28,7 +59,6 @@ function App() {
         />
       </section>
 
-      {/* Section 2: About */}
       <section id="about">
         <About 
           aboutData={portfolioData.about} 
@@ -37,7 +67,6 @@ function App() {
         />
       </section>
 
-      {/* Section 3: Portfolio Grid */}
       <section id="portfolio">
         <PortfolioGrid 
           projectsData={portfolioData.projects}
@@ -46,7 +75,6 @@ function App() {
         />
       </section>
 
-      {/* Section 4: Contact */}
       <section id="contact">
         <Contact />
       </section>
